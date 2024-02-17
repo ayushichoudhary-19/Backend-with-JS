@@ -38,7 +38,6 @@ app.use(express.static("public"))
 app.use(cookieParser())  //in this we do not need to  usually pass any options to cookieParser
 
 
-
 // middlewares are functions that run before the route handler
 // means if we call a url with route /instagram then before server can handle the request and send a res.send() or res.json() response
 // we need a middleware to check if the user is authenticated or not 
@@ -46,5 +45,18 @@ app.use(cookieParser())  //in this we do not need to  usually pass any options t
 // or to check limit on the number of requests a user can make to the server to prevent DDOS attacks
 // thus middlewares are used to run some code before the server can handle the request
 //  compute power of server is saved by using middlewares
+
+
+// routes
+
+import userRouter from "./routes/user.routes.js"
+
+// routes declaration
+// we used to use app.get() or app.post() to declare routes
+// but now since route is in separate file, we use middleware and app.use() to use the route
+app.use("/api/v1/users", userRouter);
+// as soon as user goes to route users, the control is transferred to userRouter
+// https://localhost:3000/api/v1/users/register
+
 
 export default app
