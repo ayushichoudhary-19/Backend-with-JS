@@ -20,3 +20,5 @@ class ApiResponse {
         // 500-599 is for server errors
     }
 }
+
+export default ApiResponse;

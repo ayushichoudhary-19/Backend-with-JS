@@ -81,7 +81,7 @@ userSchema.pre("save", async function (next) {
 
     if(!this.isModified("password")) return next(); // if the password is not modified then do not encrypt it again
 
-    this.password = bcrypt.hash(this.password,8); //8 is the number of rounds of encryption means how many times the password will be encrypted
+    this.password = await bcrypt.hash(this.password,8); //8 is the number of rounds of encryption means how many times the password will be encrypted
     next(); // move to the next operation
     // but when we save the data to the database the password will be encrypted
     // eg. if someone changes anything like their avatar, email, etc then the password will be encrypted again on saving the data
