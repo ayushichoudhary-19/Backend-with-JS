@@ -40,7 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
     // it takes an object as an argument and returns the first document that matches the object
     // if no document is found, it returns null
 
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or: [{username},{email}] //$or is a method of mongoose which is used to find the documents which match any of the conditions
     })
 
@@ -53,13 +53,16 @@ const registerUser = asyncHandler(async (req, res) => {
     // multer provides us with the files object which contains the details of the files that we have uploaded
     // the files object contains the details of the files that we have uploaded
     const avatarLocalPath = req.files?.avatar[0]?.path; // this will give us the local path of the file that we have uploaded to cloudinary
-    const coverImageLocalPath = req.files?.coverImage[0]?.path; 
+    // const coverImageLocalPath = req.files?.coverImage[0]?.path; 
 
     if(!avatarLocalPath){
         throw new ApiError(400, "Avatar is required");
     }
-    // cover image is not required so we are not checking for it
-
+    let coverImageLocalPath;
+    if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0){
+          coverImageLocalPath = req.files.coverImage[0].path;
+    }
+    
     // upload images to cloudinary
    const avatar = await uploadOnCloudinary(avatarLocalPath);
    const coverImage = await uploadOnCloudinary(coverImageLocalPath);

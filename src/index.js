@@ -5,7 +5,7 @@ const app=express();
  
 
 dotenv.config({
-    path: './env'
+    path: './.env'
 })
 
 // async in db's index.html file returns a promise, so we can use .then() and .catch() to handle the promise.

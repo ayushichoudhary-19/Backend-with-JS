@@ -33,6 +33,7 @@ const uploadToCloudinary = async(localFilePath) => {
      console.log("File uploaded to cloudinary successfully");
     //   upload will take some time, so we need to wait for it to complete so we use await
     console.log(response.url); // url of the file uploaded to cloudinary
+    fs.unlinkSync(localFilePath); // remove file from server/locally saved file
     return response;
     }
    
