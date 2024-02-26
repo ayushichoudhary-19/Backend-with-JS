@@ -1,7 +1,7 @@
 import {asyncHandler} from '../utils/asyncHandler.js';
 import {ApiError} from '../utils/ApiError.js';
 import {User} from '../models/user.model.js';
-import {uploadOnCloudinary} from '../utils/cloudinary.js';
+import {uploadOnCloudinary} from "../utils/cloudinary.js";
 import ApiResponse from '../utils/ApiResponse.js';
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -16,7 +16,7 @@ const registerUser = asyncHandler(async (req, res) => {
     // return response to the frontend
 
 
-    const {fullname,email,username,password} = req.body() // this will give us the user details from the frontend
+    const {fullname,email,username,password} = req.body // this will give us the user details from the frontend
     console.log("email",email);
 
     //validation

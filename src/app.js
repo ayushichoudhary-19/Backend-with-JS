@@ -56,7 +56,8 @@ import userRouter from "./routes/user.routes.js"
 // but now since route is in separate file, we use middleware and app.use() to use the route
 app.use("/api/v1/users", userRouter);
 // as soon as user goes to route users, the control is transferred to userRouter
-// https://localhost:3000/api/v1/users/register
+// http://localhost:7000/api/v1/users/register
 
 
-export default app
+
+export {app}

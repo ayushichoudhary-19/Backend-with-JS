@@ -1,7 +1,7 @@
 //express gives us the router method to create a new router object  
  import {Router} from 'express';
-import { registerUser } from '../controllers/user.controller';
-import { upload } from '../middlewares/multer.middleware';
+import { registerUser } from '../controllers/user.controller.js';
+import { upload } from '../middlewares/multer.middleware.js';
  const router  = Router();
  // similar to the app object we have in the main file
 

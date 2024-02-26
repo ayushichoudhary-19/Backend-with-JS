@@ -19,7 +19,7 @@ cloudinary.config({
 
 // we make a method that takes path of the file on the server and uploads it to cloudinary
 // then after upload, delete it from server by unlinking it
-const uploadToCloudinary = async(localFilePath) => {
+const uploadOnCloudinary = async(localFilePath) => {
     try{
         //if file path DNE
         if(!localFilePath)  return null;
@@ -47,3 +47,6 @@ const uploadToCloudinary = async(localFilePath) => {
         return null;
     }
 }
+
+
+export {uploadOnCloudinary};

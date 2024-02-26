@@ -1,56 +1,23 @@
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import connectDB from "./db/index.js";
-import express from "express";
-const app=express();
- 
+import { app } from "./app.js";
 
 dotenv.config({
     path: './.env'
-})
-
-// async in db's index.html file returns a promise, so we can use .then() and .catch() to handle the promise.
+});
 
 connectDB()
-.then( () => {
+.then(() => {
     app.on("error", (error) => {
-        console.log("Error: ", error)
-        throw error
-    })
+        console.log("Error: ", error);
+        throw error;
+    });
 
-    app.listen(7000, () => {
-        console.log(`Server is running at port: ${process.env.PORT || 7000}`);
-    })
+    const server = app.listen( 0, () => {
+        const port = server.address().port;
+        console.log(`⚙️ Server is running at port: ${port}`);
+    });
 })
 .catch((error) => {
     console.log("MongoDB connection error: ", error);
-})
-
-
-
-
-
-/*
-import mongoose from "mongoose";
-import { DB_NAME } from "./constants";
-import express from "express";
-const app=express();
-
-;( async() => {
-    try {
-        await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
-        app.on("error", (error) => {
-            console.log("Error: ", error)
-            throw error
-        })
-
-        app.listen(process.env.PORT, () => {
-            console.log(`Server is running on port ${process.env.PORT}`)
-        })
-        
-    } catch (error) {
-        console.error("Error: ", error)
-        throw error
-    }
-})()
-
-*/
+});
